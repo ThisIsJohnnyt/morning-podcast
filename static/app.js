@@ -230,42 +230,7 @@ form.addEventListener("submit", async (e) => {
   if (e.submitter?.value === "cancel") return;
   e.preventDefault();
   const f = form.elements;
-  if (f.city.value.trim() !== cfg.city) await const CUSTOM_ID = "__custom__";
-
-function fillVoiceSelect(el, voices, customVoices, current) {
-  const sel = el.querySelector(".h-voice");
-  const input = el.querySelector(".h-custom");
-  sel.innerHTML = "";
-  const group = (label, items) => {
-    const g = document.createElement("optgroup");
-    g.label = label;
-    for (const [value, text] of items) g.append(new Option(text, value));
-    sel.append(g);
-  };
-  group("Built-in voices", voices.map((v) => [v, v]));
-  if (customVoices.length) {
-    group("My AI Studio voices", customVoices.map((v) => [v.id, `${v.name} (${v.type === "replicated" ? "cloned" : "designed"})`]));
-  }
-  group("Other", [[CUSTOM_ID, "Paste a voice ID…"]]);
-
-  const known = [...sel.options].some((o) => o.value === current);
-  sel.value = known ? current : CUSTOM_ID;
-  input.value = known ? "" : current;
-  input.hidden = sel.value !== CUSTOM_ID;
-  input.required = !input.hidden;
-  sel.onchange = () => {
-    input.hidden = sel.value !== CUSTOM_ID;
-    input.required = !input.hidden;
-    if (!input.hidden) input.focus();
-  };
-}
-
-function selectedVoice(el) {
-  const v = el.querySelector(".h-voice").value;
-  return v === CUSTOM_ID ? el.querySelector(".h-custom").value.trim() : v;
-}
-
-$("#findCity").onclick();
+  if (f.city.value.trim() !== cfg.city) await $("#findCity").onclick();
   const next = {
     ...cfg,
     listener_name: f.listener_name.value.trim(),

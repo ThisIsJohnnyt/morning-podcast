@@ -1,0 +1,12 @@
+# Personal settings and secrets (created locally; see config.example.json and .env.example)
+config.json
+.env
+
+# Generated episodes
+shows/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

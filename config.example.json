@@ -1,0 +1,17 @@
+{
+  "city": "New York",
+  "latitude": 40.7128,
+  "longitude": -74.006,
+  "temperature_unit": "fahrenheit",
+  "ical_url": "",
+  "news_topics": ["top", "technology", "science"],
+  "headlines_per_topic": 3,
+  "show_minutes": 3,
+  "listener_name": "",
+  "hosts": [
+    {"name": "Max", "voice": "Puck", "persona": "An upbeat, over-caffeinated morning radio host who loves puns and treats every minor event like breaking news."},
+    {"name": "June", "voice": "Kore", "persona": "A dry, deadpan co-host with impeccable comic timing who gently mocks Max but secretly cares about the listener."}
+  ],
+  "script_model": "gemini-3.8-flash",
+  "tts_model": "gemini-3.8-flash-tts"
+}

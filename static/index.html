@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morning Radio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="onair" id="onair">ON AIR</span>
+      <span class="station">WAKE <em>FM</em></span>
+    </div>
+    <button class="ghost" id="openSettings" aria-label="Settings">⚙ Settings</button>
+  </header>
+
+  <main>
+    <section class="studio">
+      <div class="dial" aria-hidden="true">
+        <div class="ticks"></div>
+        <div class="needle" id="needle"></div>
+      </div>
+      <p class="date" id="today"></p>
+      <h1 id="title">Today's show hasn't aired yet</h1>
+      <button class="tune" id="tuneIn">
+        <span class="tune-icon">📻</span>
+        <span id="tuneLabel">Tune in</span>
+      </button>
+      <ol class="steps" id="steps" hidden>
+        <li data-step="Gathering">Gathering weather, calendar &amp; news</li>
+        <li data-step="Writing">Writing the script</li>
+        <li data-step="Recording">Recording in the studio</li>
+      </ol>
+      <p class="error" id="error" hidden></p>
+      <audio id="player" controls preload="metadata" hidden></audio>
+    </section>
+
+    <section class="transcript" id="transcriptWrap" hidden>
+      <h2>Transcript</h2>
+      <div id="transcript"></div>
+    </section>
+
+    <section class="archive">
+      <h2>Past episodes</h2>
+      <ul id="archive"><li class="muted">No episodes yet.</li></ul>
+    </section>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog" id="settingsForm">
+      <h2>Station settings</h2>
+
+      <fieldset>
+        <legend>You</legend>
+        <label>Your name (what the hosts call you)
+          <input name="listener_name" placeholder="e.g. Alex">
+        </label>
+        <label>Show length
+          <select name="show_minutes">
+            <option value="2">2 minutes</option>
+            <option value="3">3 minutes</option>
+            <option value="4">4 minutes</option>
+            <option value="5">5 minutes</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Weather</legend>
+        <label>City
+          <span class="row">
+            <input name="city" required>
+            <button type="button" class="ghost" id="findCity">Find</button>
+          </span>
+        </label>
+        <small class="muted" id="coords"></small>
+        <label>Units
+          <select name="temperature_unit">
+            <option value="fahrenheit">°F</option>
+            <option value="celsius">°C</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Calendar</legend>
+        <label>Google Calendar secret iCal address
+          <input name="ical_url" type="password" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics">
+        </label>
+        <small class="muted">Google Calendar → ⚙ Settings → your calendar → Integrate calendar → “Secret address in iCal format”.</small>
+      </fieldset>
+
+      <fieldset>
+        <legend>News</legend>
+        <label>Topics (comma-separated)
+          <input name="news_topics" placeholder="technology, science, Formula 1, local news">
+        </label>
+        <small class="muted">Broad ones (top, world, business, technology, science, health, sports, entertainment) use Google News sections. Anything else is searched.</small>
+        <label>Headlines per topic
+          <select name="headlines_per_topic">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset class="hosts">
+        <legend>Hosts</legend>
+        <small class="muted" id="voiceNote">Custom voices from Google AI Studio (Voice Design or Voice Replication) appear under “My AI Studio voices”, or you can paste a <code>voice_…</code> ID. A show that uses a custom voice is recorded one line at a time, which takes a bit longer.</small>
+        <div class="host" data-i="0">
+          <input class="h-name" placeholder="Name" required>
+          <select class="h-voice"></select>
+          <input class="h-custom" placeholder="voice_… ID from AI Studio" hidden>
+          <textarea class="h-persona" rows="2" placeholder="Personality"></textarea>
+        </div>
+        <div class="host" data-i="1">
+          <input class="h-name" placeholder="Name" required>
+          <select class="h-voice"></select>
+          <input class="h-custom" placeholder="voice_… ID from AI Studio" hidden>
+          <textarea class="h-persona" rows="2" placeholder="Personality"></textarea>
+        </div>
+      </fieldset>
+
+      <p class="error" id="settingsError" hidden></p>
+      <div class="actions">
+        <button value="cancel" class="ghost" formnovalidate>Cancel</button>
+        <button type="submit" id="saveSettings" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+google-genai
+fastapi
+uvicorn[standard]
+httpx
+feedparser
+icalendar
+recurring-ical-events
+python-dotenv

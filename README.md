@@ -3,8 +3,11 @@
 Two AI radio hosts banter through **your** weather, calendar and news headlines every morning.
 Gemini writes the script and [Gemini TTS](https://ai.google.dev/gemini-api/docs/speech-generation) performs it with two voices, using a delivery direction on every line ("excited, fast-paced", "dry and deadpan", …).
 
-> **Max:** Rise and shine, superstar! It is Tuesday, and you are tuned in live to the one and only morning show broadcast exclusively to your ears!
-> **June:** Good morning. Max has had three espressos already. Please send help.
+<p align="center">
+  <img src="docs/screenshot.png" alt="WAKE FM web app showing an episode titled 'Croissant Bagels and Ominous Dentistry' with an audio player and transcript" width="640">
+</p>
+
+🎧 **[Listen to a 50-second demo episode](docs/demo.mp3)** (a fictional sample: made-up weather, calendar and headlines)
 
 Each episode runs 2–5 minutes, plays in a small radio-style web app with a live transcript, and is saved to an archive.
 
@@ -88,3 +91,7 @@ If one source fails, such as a broken calendar link or a news timeout, the show 
 | `static/` | The web app (plain HTML, CSS and JS, no build step) |
 
 Models are set in `config.json` (`script_model` and `tts_model`). The defaults are `gemini-3.8-flash` and `gemini-3.8-flash-tts`.
+
+## License
+
+[MIT](LICENSE)
